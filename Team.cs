@@ -19,26 +19,26 @@ namespace Jalgpall_U4
 
         public void StartGame(int width, int height)
         {
-            var positions = new List<Tuple<int, int>>()
+            var positions = new List<(int X, int Y)>()
             {
-                Tuple.Create(5, height / 2),      // Вратарь
-                Tuple.Create(10, height / 3),     // Защитник 1
-                Tuple.Create(10, 2 * height / 3), // Защитник 2
-                Tuple.Create(15, height / 4),     // Защитник 3
-                Tuple.Create(20, height / 2),     // Полузащитник 1
-                Tuple.Create(20, height / 3),     // Полузащитник 2
-                Tuple.Create(25, height / 2),     // Полузащитник 3
-                Tuple.Create(30, height / 4),     // Нападающий 1
-                Tuple.Create(30, 3 * height / 4)  // Нападающий 2
+                (5, height / 2),      // Вратарь
+                (10, height / 3),     // Защитник 1
+                (10, 2 * height / 3), // Защитник 2
+                (15, height / 4),     // Защитник 3
+                (20, height / 2),     // Полузащитник 1
+                (20, height / 3),     // Полузащитник 2
+                (25, height / 2),     // Полузащитник 3
+                (30, height / 4),     // Нападающий 1
+                (30, 3 * height / 4)  // Нападающий 2
             };
 
             for (int i = 0; i < Players.Count; i++)
             {
-                int xPosition = this == Game.HomeTeam ? positions[i].Item1 : width - positions[i].Item1; // меняем положение игроков в зависимости от команды
-                int yPosition = positions[i].Item2;
+                int xPosition = this == Game.HomeTeam ? positions[i].X : width - positions[i].X;
+                int yPosition = positions[i].Y;
 
                 Players[i].SetPosition(xPosition, yPosition);
-                Players[i].Draw(); // Отрисовка игрока
+                Players[i].Draw();
             }
         }
 

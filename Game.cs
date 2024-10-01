@@ -92,40 +92,17 @@ namespace Jalgpall_U4
 
         public void Move()
         {
-            var closestHomePlayer = HomeTeam.GetClosestPlayerToBall();
-            var closestAwayPlayer = AwayTeam.GetClosestPlayerToBall();
+            var allPlayers = HomeTeam.Players.Concat(AwayTeam.Players);
 
-            Player closestPlayer;
-            if (closestHomePlayer.GetDistanceToBall() <= closestAwayPlayer.GetDistanceToBall())
-            {
-                closestPlayer = closestHomePlayer;
-            }
-            else
-            {
-                closestPlayer = closestAwayPlayer;
-            }
+            Player closestPlayer = allPlayers.OrderBy
+                (p => p.GetDistanceToBall()).First();
 
             closestPlayer.Move();
-
-            //var newclosestHomePlayer = HomeTeam.GetClosestPlayerToBall();
-            //var newclosestAwayPlayer = AwayTeam.GetClosestPlayerToBall();
-
-            //Console.SetCursorPosition(50, 0);
-            //Console.ForegroundColor = ConsoleColor.Blue;
-            //Console.WriteLine("Игрок N" + newclosestHomePlayer.Symbol + " - " + (int)newclosestHomePlayer.GetDistanceToBall() + " M");
-            //Console.SetCursorPosition(50, 1);
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.WriteLine("Игрок N" + newclosestAwayPlayer.Symbol + " - " + (int)newclosestAwayPlayer.GetDistanceToBall() + " M");
-
-            // Двигаем мяч
-            Ball.Move();
-
             foreach (var player in HomeTeam.Players.Concat(AwayTeam.Players))
             {
-                player.Wander();
                 player.Draw();
             }
-
+            Ball.Move();
             Ball.Draw();
             
         }

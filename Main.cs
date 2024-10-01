@@ -36,7 +36,7 @@ namespace Jalgpall_U4
             {
                 stadium.Draw();
                 game.Move();
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(200);
             }
         }
     }

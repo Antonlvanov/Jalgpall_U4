@@ -64,24 +64,32 @@ namespace Jalgpall_U4
             double newX = X + velocityX;
             double newY = Y + velocityY;
 
-            // Проверяем, не выходит ли мяч за границы поля
-            if (newX < 2 || newX >= _game.Stadium.Width - 1)
-            {
-                velocityX = -velocityX; // изменить направление скорости по Х
-                newX = X + velocityX;   
-            }
-
-            if (newY < 3 || newY >= _game.Stadium.Height - 1)
+            if (newY < 3 || newY > _game.Stadium.Height - 3)
             {
                 velocityY = -velocityY; // изменить направление скорости по Y
-                newY = Y + velocityY;  
+                newY = Y + velocityY;
+            }
+
+            // точка пересечения границ по х
+            double tX;
+            if (newX < 2 || newX >= _game.Stadium.Width - 3)
+            {
+                if (newX < 2)
+                {
+                    tX = (2 - X) / velocityX; // узнаем время пересечения 
+                    newX = X + velocityX * tX; // перемещение мяча к точке пересечения
+                }
+                else if (newX >= _game.Stadium.Width - 3)
+                {
+                    tX = (_game.Stadium.Width - 1 - X) / velocityX; 
+                    newX = X + velocityX * tX - 1; 
+                }
             }
 
             X = newX;
             Y = newY;
 
             CheckGoal();
-
             Draw();
         }
 

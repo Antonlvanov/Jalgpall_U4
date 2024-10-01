@@ -31,8 +31,8 @@ namespace Jalgpall_U4
         {
             wallList.Add(new Line(1, 2, Width - 1, true, '_')); // Верхняя линия
             wallList.Add(new Line(1, Height, Width - 1, true, '‾')); // Нижняя линия
-            wallList.Add(new Line(1, 3, Height - 2, false, '|')); // Левый столбец
-            wallList.Add(new Line(Width - 1, 3, Height - 2, false, '|')); // Правый столбец
+            wallList.Add(new Line(1, 3, Height - 3, false, '|')); // Левый столбец
+            wallList.Add(new Line(Width - 1, 3, Height - 3, false, '|')); // Правый столбец
         }
 
         public void CreateGates()
@@ -68,7 +68,7 @@ namespace Jalgpall_U4
         public bool IsIn(double x, double y)
         {
             //Возвращает true, если координаты в пределах стадиона 
-            return x >= 3 && x < Width && y >= 3 && y < Height;
+            return x > 1 && x < Width - 4 && y > 3 && y < Height - 3;
         }
     }
 }

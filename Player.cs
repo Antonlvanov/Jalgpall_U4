@@ -16,8 +16,8 @@ namespace Jalgpall_U4
         public char Symbol { get; set; }
         public Team? Team { get; set; } = null;
 
-        private const double MaxSpeed = 5;
-        private const double MaxKickSpeed = 25;
+        private const double MaxSpeed = 7;
+        private const double MaxKickSpeed = 20;
         private const double BallKickDistance = 7;
 
         private Random _random = new Random();
@@ -81,11 +81,11 @@ namespace Jalgpall_U4
             _vx = dx / ratio;
             _vy = dy / ratio;
         }
+
         public void Move()
         {
             Clear();
 
-            // Проверяем, можем ли мы ударить по мячу
             if (GetDistanceToBall() < BallKickDistance)
             {
                 MoveTowardsBall();
@@ -96,9 +96,8 @@ namespace Jalgpall_U4
                 MoveTowardsBall();
             }
 
-            UpdatePosition(); // Обновляем координаты
-
-            Draw(); // рисуем игрока
+            UpdatePosition(); 
+            Draw(); 
         }
 
         private void UpdatePosition()
@@ -126,14 +125,6 @@ namespace Jalgpall_U4
             Console.ForegroundColor = Color;
             Console.SetCursorPosition(15, 0);
             Console.WriteLine($"Игрок {Name} ударил мяч!");
-        }
-
-        public void Wander()
-        {
-            // Случайное изменение направления (движение в случайную сторону)
-            var random = new Random();
-            _vx = (random.NextDouble() - 0.5) * MaxSpeed; // случайное направление по x
-            _vy = (random.NextDouble() - 0.5) * MaxSpeed; // случайное направление по y
         }
     }
 }
