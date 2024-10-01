@@ -98,7 +98,7 @@ namespace Jalgpall_U4
                 (p => p.GetDistanceToBall()).First();
 
             closestPlayer.Move();
-            foreach (var player in HomeTeam.Players.Concat(AwayTeam.Players))
+            foreach (var player in allPlayers)
             {
                 player.Draw();
             }
